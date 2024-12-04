@@ -3,12 +3,12 @@ It is expected to crash upon clicking the 'Show Map' button. This project is int
 
 In order to run the app successfully, you need to replace the line on MainActivity.kt where MapLibre is initialized to input your own apikey.
 
+```kotlin
 onCreate(savedInstanceState: Bundle?) {
-....
+       ....
        MapLibre.getInstance(
                 applicationContext,
                 "<api_key>",
                 WellKnownTileServer.MapLibre
             )
-....
           
