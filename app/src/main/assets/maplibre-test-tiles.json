@@ -403,6 +403,10 @@
           ]
         }
       }
+    },
+    "test-tiles": {
+      "type": "vector",
+      "url": "https://pointrmapstorage.blob.core.windows.net/style/playground/test-tiles/tiles.json"
     }
   },
   "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
@@ -703,6 +707,25 @@
       }
     },
     {
+      "id": "countries-fill-copy",
+      "type": "fill-extrusion",
+      "source": "test-tiles",
+      "source-layer": "test",
+      "maxzoom": 24,
+      "filter": ["all"],
+      "layout": {"visibility": "visible"},
+      "paint": {
+        "fill-extrusion-color": [
+          "case",
+          ["==", ["get", "name"], "behlul"],
+          "hsla(131, 33%, 87%, 1)",
+          ["==", ["get", "name"], "pika"],
+          "#6B95DA",
+          "hsl(240, 8%, 71%)"
+        ]
+      }
+    },
+    {
       "id": "geolines",
       "type": "line",
       "source": "maplibre",
@@ -736,6 +759,29 @@
         "text-halo-blur": 1,
         "text-halo-color": "rgba(255, 255, 255, 1)",
         "text-halo-width": 1
+      }
+    },
+    {
+      "id": "countries-label-copy",
+      "type": "symbol",
+      "source": "test-tiles",
+      "source-layer": "test",
+      "minzoom": 2,
+      "maxzoom": 24,
+      "filter": ["all"],
+      "layout": {
+        "text-font": ["Open Sans Semibold"],
+        "text-size": {"stops": [[2, 10], [4, 12], [6, 16]]},
+        "text-field": "{name}",
+        "visibility": "visible",
+        "text-max-width": 10,
+        "text-transform": {"stops": [[0, "uppercase"], [2, "none"]]}
+      },
+      "paint": {
+        "text-color": "rgba(8, 37, 77, 1)",
+        "text-halo-blur": {"stops": [[2, 0.2], [6, 0]]},
+        "text-halo-color": "rgba(255, 255, 255, 1)",
+        "text-halo-width": {"stops": [[2, 1], [6, 1.6]]}
       }
     },
     {
